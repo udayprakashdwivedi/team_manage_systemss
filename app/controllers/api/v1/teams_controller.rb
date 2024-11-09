@@ -55,4 +55,4 @@ class Api::V1::TeamsController < Api::V1::BaseController
   def authorize_owner
     render json: { error: 'Not authorized' }, status: :forbidden unless @team.owner == current_user
   end
-end
+end 
