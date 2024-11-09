@@ -1,0 +1,240 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API V1"
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
+  "paths": {
+    "/api/v1/users": {
+      "get": {
+        "summary": "Fetch all users",
+        "responses": {
+          "200": {
+            "description": "Users fetched successfully"
+          }
+        }
+      }
+    },
+    "/api/v1/signup": {
+      "post": {
+        "summary": "create registration",
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      }
+    },
+    "/api/v1/login": {
+      "post": {
+        "summary": "Log in a user",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Login successful"
+          },
+          "401": {
+            "description": "Invalid email or password"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "user": {
+                    "type": "object",
+                    "properties": {
+                      "email": {
+                        "type": "string",
+                        "example": "uday@gmail.com"
+                      },
+                      "password": {
+                        "type": "string",
+                        "example": "123456"
+                      }
+                    },
+                    "required": [
+                      "email",
+                      "password"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/teams/{team_id}/team_members": {
+      "parameters": [
+        {
+          "name": "team_id",
+          "in": "path",
+          "description": "team_id",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "get": {
+        "summary": "list team_members",
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      },
+      "post": {
+        "summary": "create team_member",
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      }
+    },
+    "/api/v1/teams/{team_id}/team_members/{id}": {
+      "parameters": [
+        {
+          "name": "team_id",
+          "in": "path",
+          "description": "team_id",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        },
+        {
+          "name": "id",
+          "in": "path",
+          "description": "id",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "get": {
+        "summary": "show team_member",
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      },
+      "delete": {
+        "summary": "delete team_member",
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      }
+    },
+    "/api/v1/teams": {
+      "get": {
+        "summary": "Fetch all teams for current user",
+        "responses": {
+          "200": {
+            "description": "Teams fetched successfully"
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new team",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "Team created"
+          },
+          "422": {
+            "description": "Invalid request"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Team Alpha"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "A description of Team Alpha"
+                  }
+                },
+                "required": [
+                  "name"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/teams/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "description": "id",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "get": {
+        "summary": "show team",
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      },
+      "patch": {
+        "summary": "update team",
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      },
+      "put": {
+        "summary": "update team",
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      },
+      "delete": {
+        "summary": "delete team",
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      }
+    }
+  }
+}

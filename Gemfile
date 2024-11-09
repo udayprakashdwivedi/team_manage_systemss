@@ -45,6 +45,7 @@ gem 'factory_bot_rails', group: :test
 gem 'rswag-specs'
 gem 'rswag-api'
 gem 'rswag-ui'
+gem 'rspec-rails'
 
 
 
